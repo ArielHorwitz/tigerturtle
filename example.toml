@@ -1,0 +1,7 @@
+eggs = "spam"
+bar = "baz"
+
+[numbers]
+sixty_nine = 69
+four_twenty = 420
+pi = 3.1415

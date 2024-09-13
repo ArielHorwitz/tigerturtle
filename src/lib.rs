@@ -6,19 +6,14 @@ use std::path::PathBuf;
 const SHELL_BOILERPLATE: &str = r#"
 toml_file=config.toml
 toml_keys=(
-    optional_key
     _required_key
+    optional_key
 )
-tt_out_file=$(mktemp)
-tt_err_file=$(mktemp)
+tt_out_file=$(mktemp); tt_err_file=$(mktemp)
 if tigerturtle $toml_file -- ${toml_keys[@]} >$tt_out_file 2>$tt_err_file; then
-    eval $(<$tt_out_file)
-    rm $tt_out_file
+    eval $(<$tt_out_file); rm $tt_out_file
 else
-    tt_err=$(<$tt_err_file)
-    rm $tt_err_file
-    printf "${tt_err}\n"
-    exit 1
+    tt_err=$(<$tt_err_file); rm $tt_err_file; printf "${tt_err}\n"; exit 1
 fi
 "#;
 

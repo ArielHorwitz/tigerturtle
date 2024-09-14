@@ -4,16 +4,13 @@ use std::io::Read;
 use std::path::PathBuf;
 
 const SHELL_BOILERPLATE: &str = r#"
-toml_file=config.toml
-toml_keys=(
-    _required_key
-    optional_key
-)
-tt_out_file=$(mktemp); tt_err_file=$(mktemp)
-if tigerturtle $toml_file -- ${toml_keys[@]} >$tt_out_file 2>$tt_err_file; then
-    eval $(<$tt_out_file); rm $tt_out_file
+toml_file=file.toml
+toml_keys=()
+tt_out=$(mktemp 'tt_out.XXXXXXXXXX'); tt_err=$(mktemp 'tt_err.XXXXXXXXXX')
+if tigerturtle $toml_file -- ${toml_keys[@]} >$tt_out 2>$tt_err; then
+    eval $(<$tt_out); rm $tt_out; rm $tt_err;
 else
-    tt_err=$(<$tt_err_file); rm $tt_err_file; printf "${tt_err}\n"; exit 1
+    echo "$(<$tt_err)" >&2; rm $tt_out; rm $tt_err; exit 1;
 fi
 "#;
 

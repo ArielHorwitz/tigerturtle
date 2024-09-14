@@ -31,7 +31,7 @@ pub struct Args {
     pub delim: String,
     /// Evaluated variables prefix
     #[arg(short = 'p', long)]
-    pub prefix: Option<String>,
+    pub output_prefix: Option<String>,
     /// Default TOML
     #[arg(long)]
     pub default: Option<String>,
@@ -66,7 +66,7 @@ pub fn run() -> Result<()> {
     let evaluation_string = process_toml(
         &toml_contents,
         args.keys,
-        &args.prefix.unwrap_or_default(),
+        &args.output_prefix.unwrap_or_default(),
         &args.required_prefix,
         &args.delim,
     )

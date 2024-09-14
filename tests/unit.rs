@@ -1,6 +1,6 @@
 #[cfg(test)]
 mod unit_tests {
-    const EXAMPLE_TOML: &str = include_str!("../example.toml");
+    const EXAMPLE_TOML: &str = include_str!("../example/example.toml");
 
     fn keys_to_vec(keys: &[&str]) -> Vec<String> {
         keys.iter().map(std::string::ToString::to_string).collect()

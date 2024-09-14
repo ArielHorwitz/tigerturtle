@@ -1,19 +1,18 @@
 #! /bin/bash
 set -e
 
-toml_file=example.toml
-toml_keys=(foo _bar numbers__pi)
-toml_default='
+config_file=example.toml
+config_keys=(foo _bar numbers__pi)
+config_default='
 foo = "eggs"
 bar = "spam"
 
 [numbers]
 pi = 3.1415926535
 '
-tt_args=(--output-prefix "config__" $toml_file -- ${toml_keys[@]})
-
+tt_args=(--output-prefix "config__" $config_file -- ${config_keys[@]})
 tt_out=$(mktemp 'tt_out.XXXXXXXXXX'); tt_err=$(mktemp 'tt_err.XXXXXXXXXX')
-if tigerturtle -D "$toml_default" ${tt_args[@]} >$tt_out 2>$tt_err; then
+if tigerturtle -D "$config_default" ${tt_args[@]} >$tt_out 2>$tt_err; then
     # For debugging: echo "$(<$tt_out)" >&2
     eval $(<$tt_out); rm $tt_out; rm $tt_err;
 else

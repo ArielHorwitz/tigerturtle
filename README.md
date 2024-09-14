@@ -6,7 +6,7 @@ I use bash scripts a lot. I like to load configurations. I dislike the idea of s
 ## How?
 Install using `cargo install tigerturtle`.
 
-Run `tigerturtle --generate >> some_script.sh` and modify. If you're unsure how to proceed from here, I recommend running `cat $tt_out_file` before the `eval` command.
+Run `tigerturtle --generate >> some_script.sh` for the most basic use case. Check out the example script to learn more.
 
 ## I can break this
 Feel free to report an issue.

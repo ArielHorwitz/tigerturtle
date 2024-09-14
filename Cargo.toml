@@ -1,7 +1,7 @@
 [package]
 name = "tigerturtle"
 description = "Safely parse and evaluate toml files as bash variables"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 repository = "https://github.com/ArielHorwitz/tigerturtle"
 license = "Unlicense"

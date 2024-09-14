@@ -33,10 +33,10 @@ pub struct Args {
     #[arg(short = 'p', long)]
     pub output_prefix: Option<String>,
     /// Default TOML
-    #[arg(long)]
+    #[arg(short = 'D', long)]
     pub default: Option<String>,
     /// Write default TOML if file is missing
-    #[arg(long)]
+    #[arg(short = 'W', long)]
     pub write_missing: bool,
     /// Required key prefix
     #[arg(short = 'r', long, default_value_t = String::from("_"))]

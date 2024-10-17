@@ -4,10 +4,9 @@ use std::io::Read;
 use std::path::PathBuf;
 
 const SHELL_BOILERPLATE: &str = r#"
-toml_file=file.toml
 toml_keys=()
-tt_out=$(mktemp 'tt_out.XXXXXXXXXX'); tt_err=$(mktemp 'tt_err.XXXXXXXXXX')
-if tigerturtle $toml_file -- ${toml_keys[@]} >$tt_out 2>$tt_err; then
+tt_out=$(mktemp); tt_err=$(mktemp)
+if tigerturtle file.toml -- ${toml_keys[@]} >$tt_out 2>$tt_err; then
     eval $(<$tt_out); rm $tt_out; rm $tt_err;
 else
     echo "$(<$tt_err)" >&2; rm $tt_out; rm $tt_err; exit 1;
